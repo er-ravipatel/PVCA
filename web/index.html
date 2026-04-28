@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>1:1 Video Chat</h1>
+
+        <div class="control-panel">
+            <div class="input-group">
+                <label for="roomId">Room ID:</label>
+                <input type="text" id="roomId" placeholder="Enter room ID" value="">
+            </div>
+
+            <div class="button-group">
+                <button id="startCameraBtn" onclick="startCamera()">Start Camera</button>
+                <button id="joinBtn" onclick="joinRoom()" disabled>Join Room</button>
+                <button id="hangupBtn" onclick="hangup()" disabled>Hang Up</button>
+            </div>
+
+            <div class="button-group">
+                <button id="muteBtn" onclick="toggleMute()" disabled>🔊 Mute</button>
+                <button id="cameraBtn" onclick="toggleCamera()" disabled>📹 Camera Off</button>
+            </div>
+
+            <div class="status">
+                <p id="status">Ready</p>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <div class="video-box">
+                <h3>You</h3>
+                <video id="localVideo" autoplay muted playsinline style="transform: scaleX(-1);"></video>
+            </div>
+            <div class="video-box">
+                <h3>Peer</h3>
+                <video id="remoteVideo" autoplay playsinline></video>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
