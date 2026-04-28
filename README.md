@@ -1,7 +1,26 @@
-# 1:1 Video Chat (Self-Hosted, Local WiFi)
+# PVCA — Private Video Chat Application
 
-A minimal peer-to-peer video chat app. No external services, no database, no auth.  
-Works on the same WiFi network between a PC and a mobile phone.
+> **Proof of Concept (POC)**  
+> Repository: [er-ravipatel/PVCA](https://github.com/er-ravipatel/PVCA)  
+> Active branch: `POC`
+
+A minimal self-hosted 1:1 video chat app. No external services, no database, no auth.  
+Works peer-to-peer over the same WiFi network between a PC and a mobile phone.
+
+---
+
+## Branches
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Stable base |
+| `POC`  | Active proof-of-concept development — all current work happens here |
+
+To switch to the POC branch after cloning:
+
+```
+git checkout POC
+```
 
 ---
 
@@ -16,9 +35,17 @@ Works on the same WiFi network between a PC and a mobile phone.
 
 ---
 
-## Quick Start
+## Setup & Running
 
-### 1. Install Python 3.10+
+### 1. Clone the repository
+
+```
+git clone https://github.com/er-ravipatel/PVCA.git
+cd PVCA
+git checkout POC
+```
+
+### 2. Install Python 3.10+
 
 Download from https://python.org and make sure it is on your PATH.
 
@@ -26,21 +53,20 @@ Download from https://python.org and make sure it is on your PATH.
 python --version
 ```
 
-### 2. Create a virtual environment
+### 3. Create a virtual environment
 
 ```
-cd video-chat-python
 python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+### 4. Install dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
-### 4. Run the server
+### 5. Run the server
 
 ```
 uvicorn app:app --host 0.0.0.0 --port 8000
@@ -52,7 +78,7 @@ You should see output like:
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-### 5. Find your PC's local IP address
+### 6. Find your PC's local IP address
 
 ```
 ipconfig
@@ -61,13 +87,13 @@ ipconfig
 Look for the `IPv4 Address` under your active network adapter (usually Wi-Fi).  
 Example: `192.168.1.10`
 
-### 6. Open on PC
+### 7. Open on PC
 
 ```
 http://localhost:8000
 ```
 
-### 7. Open on mobile (same WiFi)
+### 8. Open on mobile (same WiFi)
 
 ```
 http://<PC_LOCAL_IP>:8000
@@ -79,7 +105,7 @@ Example:
 http://192.168.1.10:8000
 ```
 
-### 8. Start a call
+### 9. Start a call
 
 1. On **both** devices: click **Start Camera** and allow camera/mic permissions.
 2. On **both** devices: type the **same Room ID** (e.g. `room1`).
