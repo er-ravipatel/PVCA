@@ -105,13 +105,54 @@ Example:
 http://192.168.1.10:8000
 ```
 
-### 9. Start a call
+### 9. Expose publicly via ngrok (current POC setup)
 
-1. On **both** devices: click **Start Camera** and allow camera/mic permissions.
-2. On **both** devices: type the **same Room ID** (e.g. `room1`).
-3. Click **Join Room** on both devices.
-4. The first device to join waits; the second device triggers the offer/answer exchange automatically.
-5. Video and audio should appear within a few seconds.
+Mobile browsers require HTTPS to access the camera/mic. In this POC we use **ngrok** to get a public HTTPS URL without configuring certificates manually.
+
+#### Install ngrok (one-time)
+
+```
+winget install ngrok.ngrok
+```
+
+After install, open a **new terminal** (so PATH is refreshed).
+
+#### Authenticate ngrok (one-time)
+
+Sign up free at https://dashboard.ngrok.com, copy your authtoken, then run:
+
+```
+ngrok config add-authtoken YOUR_AUTHTOKEN_HERE
+```
+
+#### Start the tunnel (every session)
+
+Make sure the FastAPI server is already running (step 5), then in a **second terminal**:
+
+```
+ngrok http 8000
+```
+
+You will see output like:
+
+```
+Forwarding   https://abc123.ngrok-free.app -> http://localhost:8000
+```
+
+#### Open on mobile
+
+Use the `https://` ngrok URL on **both** PC and mobile — camera and mic will work because it is real HTTPS.
+
+> **Note:** The ngrok URL changes every time you restart ngrok (free tier). Keep the ngrok window open for the whole session.
+
+### 10. Start a call
+
+1. On **both** devices: open the ngrok `https://` URL.
+2. Click **Start Camera** and allow camera/mic permissions.
+3. Type the **same Room ID** on both devices (e.g. `room1`).
+4. Click **Join Room** on both devices.
+5. The first device to join waits; the second device triggers the offer/answer exchange automatically.
+6. Video and audio should appear within a few seconds.
 
 ---
 
